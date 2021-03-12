@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: api
@@ -29,7 +29,7 @@ metadata:
 ---
 
 kind: Role
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: db
   namespace: go-demo-3-build
@@ -40,7 +40,7 @@ rules:
 
 ---
 
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: db
@@ -55,7 +55,7 @@ subjects:
 
 ---
 
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: db
@@ -87,10 +87,10 @@ spec:
         resources:
           limits:
             memory: "200Mi"
-            cpu: 0.2
+            cpu: "0.2"
           requests:
             memory: "100Mi"
-            cpu: 0.1
+            cpu: "0.1"
         volumeMounts:
         - name: mongo-data
           mountPath: /data/db
@@ -129,7 +129,7 @@ spec:
 
 ---
 
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api
@@ -146,7 +146,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: vfarcic/go-demo-3:latest
+        image: lincwest/go-demo-3:latest
         env:
         - name: DB
           value: db
@@ -162,10 +162,10 @@ spec:
         resources:
           limits:
             memory: "20Mi"
-            cpu: 0.2
+            cpu: "0.2"
           requests:
             memory: "10Mi"
-            cpu: 0.1
+            cpu: "0.1"
 
 ---
 

@@ -3,11 +3,11 @@ kind: Pod
 spec:
   containers:
   - name: helm
-    image: vfarcic/helm:2.9.1
+    image: lincwest/helm:2.9.1
     command: ["cat"]
     tty: true
   - name: kubectl
-    image: vfarcic/kubectl
+    image: lincwest/kubectl
     command: ["cat"]
     tty: true
   - name: golang
